@@ -27,3 +27,18 @@ blockchain = [
 # Anthony's KelloggCoin balance is 2650
 
 # 👇👇👇 Your code HERE 👇👇👇
+
+t = blockchain.length - 1
+wallets = {"ben" => 0, "brian" => 0, "evan" => 0, "anthony" => 0}
+
+for i in 0..t
+  sender = blockchain[i]["from_user"]
+  receiver = blockchain[i]["to_user"]
+
+  wallets[sender] -= blockchain[i]["amount"] if wallets.key?(sender)
+  wallets[receiver] += blockchain[i]["amount"] if wallets.key?(receiver)
+end
+
+wallets.each do |name, balance|
+  puts "#{name}'s KelloggCoin balance is #{balance}"
+end
